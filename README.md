@@ -1,7 +1,7 @@
 # HR.LeaveManagement.Clean
 This is a project that I use to learn in this course: https://www.udemy.com/course/aspnet-core-solid-and-clean-architecture-net-5-and-up
 
-# From section 1 to 4
+# From section 1 to 4 (03 Dec, 2023)
 From the section 1 to 4 from the course, I have learned:
 - Setup Application Core **(important)**
     - Domain and Application Projects
