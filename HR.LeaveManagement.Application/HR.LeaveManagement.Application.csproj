@@ -11,7 +11,6 @@
     <None Remove="Contracts\Persistence\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Contracts\" />
     <Folder Include="Contracts\Persistence\" />
   </ItemGroup>
   <ItemGroup>
