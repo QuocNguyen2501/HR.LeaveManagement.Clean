@@ -1,8 +1,8 @@
 # HR.LeaveManagement.Clean
 This is a project that I use to learn in this course: https://www.udemy.com/course/aspnet-core-solid-and-clean-architecture-net-5-and-up
 
-# From section 1 to 5
-From the section 1 to 5 from the course, I have learned:
+# From section 1 to 4
+From the section 1 to 4 from the course, I have learned:
 - Setup Application Core **(important)**
     - Domain and Application Projects
 - Added MediatR and Automapper (Actually, I have known how to use Automapper from when I worked with .Net Framework 4.5)
