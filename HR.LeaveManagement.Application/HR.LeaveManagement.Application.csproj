@@ -12,6 +12,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Contracts\Persistence\" />
+    <Folder Include="Features\LeaveRequest\Commands\CancelLeaveRequest\" />
+    <Folder Include="Features\LeaveRequest\Commands\ChangeLeaveRequestApproval\" />
+    <Folder Include="Features\LeaveRequest\Commands\CreateLeaveRequest\" />
+    <Folder Include="Features\LeaveRequest\Commands\DeleteLeaveRequest\" />
+    <Folder Include="Features\LeaveRequest\Commands\UpdateLeaveRequest\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HR.LeaveManagement.Domain\HR.LeaveManagement.Domain.csproj" />

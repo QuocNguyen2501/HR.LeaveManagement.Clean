@@ -38,8 +38,8 @@ namespace HR.LeaveManagement.Api.Controllers
 
         // POST api/<LeaveTypesController>
         [HttpPost]
-        [ProducesResponseType(201)]
-        [ProducesResponseType(400)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Post([FromBody] CreateLeaveTypeCommand value)
         {
             var response = await _mediator.Send(value);
@@ -51,8 +51,9 @@ namespace HR.LeaveManagement.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult> Put(int id, [FromBody]UpdateLeaveTypeCommand leaveType)
+        public async Task<ActionResult> Put(string  id, [FromBody]UpdateLeaveTypeCommand leaveType)
         {
+            leaveType.Id = id;
             await _mediator.Send(leaveType);
             return NoContent();
         }

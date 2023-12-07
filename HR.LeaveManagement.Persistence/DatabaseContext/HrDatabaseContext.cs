@@ -26,7 +26,6 @@ public class HrDatabaseContext: DbContext
             entry.Entity.DateModified = DateTime.UtcNow;
             if (entry.State == EntityState.Added)
             { 
-                entry.Entity.Id = Guid.NewGuid().ToString();
                 entry.Entity.DateCreated = DateTime.UtcNow;
             }
         }

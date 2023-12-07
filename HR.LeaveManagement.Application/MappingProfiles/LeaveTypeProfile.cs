@@ -12,6 +12,9 @@ public class LeaveTypeProfile : Profile
     {
         CreateMap<LeaveTypeDto,LeaveType>().ReverseMap();
         CreateMap<LeaveType,LeaveTypeDetailsDto>();
-        CreateMap<CreateLeaveTypeCommand,LeaveType>();
+        CreateMap<CreateLeaveTypeCommand, LeaveType>().AfterMap((src, des) =>
+        {
+            des.Id = Guid.NewGuid().ToString();
+        });
     }
 }

@@ -20,7 +20,7 @@ public class GetLeaveTypeDetailsQueryHandler : IRequestHandler<GetLeaveTypeDetai
         var leaveType = await _leaveTypeRepository.GetAsyncById(request.Id);
 
         if(leaveType==null){
-            throw new NotFoundException(nameof(LeaveType), request.Id);
+            throw new NotFoundException(nameof(Domain.LeaveType), request.Id);
         }
 
         var data = _mapper.Map<LeaveTypeDetailsDto>(leaveType);

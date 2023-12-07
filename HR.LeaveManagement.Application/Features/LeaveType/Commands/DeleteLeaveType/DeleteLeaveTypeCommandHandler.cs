@@ -17,7 +17,7 @@ public class DeleteLeaveTypeCommandHandler : IRequestHandler<DeleteLeaveTypeComm
         //verify that record exist
         if (leaveType == null)
         {
-            throw new NotFoundException(nameof(LeaveType), request.Id);
+            throw new NotFoundException(nameof(Domain.LeaveType), request.Id);
         }
 
         // delete from database
