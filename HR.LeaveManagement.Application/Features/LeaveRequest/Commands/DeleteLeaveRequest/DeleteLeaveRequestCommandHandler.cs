@@ -18,10 +18,10 @@ public class DeleteLeaveRequestCommandHandler : IRequestHandler<DeleteLeaveReque
 
     public async Task<Unit> Handle(DeleteLeaveRequestCommand request, CancellationToken cancellationToken)
     {
-        var leaveRequest = await _leaveRequestRepository.GetAsyncById(request.id);
+        var leaveRequest = await _leaveRequestRepository.GetAsyncById(request.Id);
         if (leaveRequest == null)
         {
-            throw new NotFoundException(nameof(Domain.LeaveRequest), request.id);
+            throw new NotFoundException(nameof(Domain.LeaveRequest), request.Id);
         }
         await _leaveRequestRepository.DeleteAsync(leaveRequest);
         return Unit.Value;
