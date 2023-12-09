@@ -1,5 +1,5 @@
 # HR.LeaveManagement.Clean
-This is a project that I use to learn in this course: https://www.udemy.com/course/aspnet-core-solid-and-clean-architecture-net-5-and-up
+This is a project that I use to review my knowledge in this course: https://www.udemy.com/course/aspnet-core-solid-and-clean-architecture-net-5-and-up
 
 # From section 1 to 4 (03 Dec, 2023)
 From the section 1 to 4 from the course, I have learned:
@@ -30,4 +30,6 @@ For this session, I had revised some basic knowledge like:
         - **Error** : is an error, this type of log entry is usually created when an exception is encountered. 
     - Known what is Options pattern, and how to implement it in an ASP.NET project 
 
-# Section 6 (05 Dec, 2023)
+# Section 6 (05 Dec - 07 Dec, 2023)
+- I have completed all features (LeaveType, LeaveAllocation, LeaveRequest) in HR.LeaveManagement.Api (without testing by Swagger). My feeling about this architecture, there are so many steps to implement a feature, it may be a difficulty for new developers. However,when we separate our code to smallest parts, then it is very short and easy for understanding and testing.
+- I also revised how to make an Exception Global Handler by a middleware the powerful feature in .Net.

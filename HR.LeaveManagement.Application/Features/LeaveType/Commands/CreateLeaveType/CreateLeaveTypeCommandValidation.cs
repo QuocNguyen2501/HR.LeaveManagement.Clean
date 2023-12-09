@@ -22,7 +22,7 @@ public class CreateLeaveTypeCommandValidator : AbstractValidator<CreateLeaveType
             .MustAsync(LeaveTypeNameUnique)
             .WithMessage("Leave type already exist");
 
-        this._leaveTypeRepository = leaveTypeRepository;
+        _leaveTypeRepository = leaveTypeRepository;
     }
 
     private Task<bool> LeaveTypeNameUnique(CreateLeaveTypeCommand command, CancellationToken token)
