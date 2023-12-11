@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HR.LeaveManagement.Application.Contracts.Logging;
 using HR.LeaveManagement.Application.Contracts.Persistence;
 using HR.LeaveManagement.Application.Exceptions;
 using MediatR;
@@ -9,10 +10,16 @@ public class GetLeaveAllocationDetailsQueryHandler : IRequestHandler<GetLeaveAll
 {
     private readonly IMapper _mapper;
     private readonly ILeaveAllocationRepository _leaveAllocationRepository;
-    public GetLeaveAllocationDetailsQueryHandler(IMapper mapper, ILeaveAllocationRepository leaveAllocationRepository)
+    private readonly IAppLogger<GetLeaveAllocationDetailsQueryHandler> _logger;
+    public GetLeaveAllocationDetailsQueryHandler(
+        IMapper mapper,
+        ILeaveAllocationRepository leaveAllocationRepository,
+        IAppLogger<GetLeaveAllocationDetailsQueryHandler> logger
+        )
     {
         _mapper = mapper;
         _leaveAllocationRepository = leaveAllocationRepository;
+        _logger = logger;
     }
 
     public async Task<LeaveAllocationDetailsDto> Handle(GetLeaveAllocationDetailsQuery request, CancellationToken cancellationToken)
@@ -22,6 +29,7 @@ public class GetLeaveAllocationDetailsQueryHandler : IRequestHandler<GetLeaveAll
         {
             throw new NotFoundException(nameof(Domain.LeaveAllocation), request.Id);
         }
+        _logger.LogInformation("Leave Allocation was retrieved successfully");
         return _mapper.Map<LeaveAllocationDetailsDto>(leaveAllocation);
     }
 }

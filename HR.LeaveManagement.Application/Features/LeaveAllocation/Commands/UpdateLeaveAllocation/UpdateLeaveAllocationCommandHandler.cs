@@ -38,6 +38,8 @@ namespace HR.LeaveManagement.Application.Features.LeaveAllocation.Commands.Updat
             var leaveAllocation = _mapper.Map<Domain.LeaveAllocation>(request);
 
             await _leaveAllocationRepository.UpdateAsync(leaveAllocation);
+
+            _logger.LogInformation("Updated Leave Allocation successfully");
             return Unit.Value;
         }
     }

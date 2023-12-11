@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HR.LeaveManagement.Application.Contracts.Logging;
 using HR.LeaveManagement.Application.Contracts.Persistence;
 using HR.LeaveManagement.Application.Exceptions;
 using MediatR;
@@ -9,10 +10,15 @@ namespace HR.LeaveManagement.Application.Features.LeaveAllocation.Commands.Creat
     {
         private readonly IMapper _mapper;
         private readonly ILeaveAllocationRepository _leaveAllocationRepository;
-        public CreateLeaveAllocationCommandHandler(IMapper mapper, ILeaveAllocationRepository leaveAllocationRepository)
+        private readonly IAppLogger<CreateLeaveAllocationCommandHandler> _logger;
+        public CreateLeaveAllocationCommandHandler(
+            IMapper mapper, 
+            ILeaveAllocationRepository leaveAllocationRepository,
+            IAppLogger<CreateLeaveAllocationCommandHandler> logger)
         {
             _mapper = mapper;
             _leaveAllocationRepository = leaveAllocationRepository;
+            _logger = logger;
         }
 
         public async Task<string> Handle(CreateLeaveAllocationCommand request, CancellationToken cancellationToken)
@@ -25,6 +31,9 @@ namespace HR.LeaveManagement.Application.Features.LeaveAllocation.Commands.Creat
             }
             var leaveAllocaTionCreate = _mapper.Map<Domain.LeaveAllocation>(request);
             await _leaveAllocationRepository.CreateAsync(leaveAllocaTionCreate);
+
+            _logger.LogInformation("Created Leave Allocation successfully");
+
             return leaveAllocaTionCreate.Id;
         }
     }

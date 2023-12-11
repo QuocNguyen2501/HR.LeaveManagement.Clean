@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HR.LeaveManagement.Application.Contracts.Logging;
 using HR.LeaveManagement.Application.Contracts.Persistence;
 using HR.LeaveManagement.Application.Exceptions;
 using MediatR;
@@ -9,10 +10,15 @@ namespace HR.LeaveManagement.Application.Features.LeaveAllocation.Commands.Delet
     {
         private readonly IMapper _mapper;
         private readonly ILeaveAllocationRepository _leaveAllocationRepository;
-        public DeleteLeaveAllocationCommandHandler(IMapper mapper, ILeaveAllocationRepository leaveAllocationRepository)
+        private readonly IAppLogger<DeleteLeaveAllocationCommandHandler> _logger;
+        public DeleteLeaveAllocationCommandHandler(
+            IMapper mapper, 
+            ILeaveAllocationRepository leaveAllocationRepository,
+            IAppLogger<DeleteLeaveAllocationCommandHandler> logger)
         {
             _mapper = mapper;
             _leaveAllocationRepository = leaveAllocationRepository;
+            _logger = logger;
         }
         public async Task<Unit> Handle(DeleteLeaveAllocationCommand request, CancellationToken cancellationToken)
         {
@@ -24,7 +30,7 @@ namespace HR.LeaveManagement.Application.Features.LeaveAllocation.Commands.Delet
             }
 
             await _leaveAllocationRepository.DeleteAsync(deletedLeaveAllocation);
-
+            _logger.LogInformation("Deleted Leave Allocation successfully");
             return Unit.Value;
         }
     }
