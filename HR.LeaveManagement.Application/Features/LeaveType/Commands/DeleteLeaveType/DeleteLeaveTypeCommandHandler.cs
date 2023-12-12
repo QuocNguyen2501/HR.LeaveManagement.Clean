@@ -1,3 +1,4 @@
+using HR.LeaveManagement.Application.Contracts.Logging;
 using HR.LeaveManagement.Application.Contracts.Persistence;
 using HR.LeaveManagement.Application.Exceptions;
 using MediatR;
@@ -6,8 +7,14 @@ namespace HR.LeaveManagement.Application.Features.LeaveType.Commands.DeleteLeave
 
 public class DeleteLeaveTypeCommandHandler : IRequestHandler<DeleteLeaveTypeCommand, Unit>
 {
-    ILeaveTypeRepository _leaveTypeRepository;
-    public DeleteLeaveTypeCommandHandler(ILeaveTypeRepository leaveTypeRepository) => _leaveTypeRepository = leaveTypeRepository;
+    private readonly ILeaveTypeRepository _leaveTypeRepository;
+    private readonly IAppLogger<DeleteLeaveTypeCommandHandler> _logger;
+
+    public DeleteLeaveTypeCommandHandler(ILeaveTypeRepository leaveTypeRepository, IAppLogger<DeleteLeaveTypeCommandHandler> logger) 
+    { 
+        _leaveTypeRepository = leaveTypeRepository;
+        _logger = logger;
+    }
 
     public async Task<Unit> Handle(DeleteLeaveTypeCommand request, CancellationToken cancellationToken)
     {
@@ -22,7 +29,7 @@ public class DeleteLeaveTypeCommandHandler : IRequestHandler<DeleteLeaveTypeComm
 
         // delete from database
         await _leaveTypeRepository.DeleteAsync(leaveType);
-
+        _logger.LogInformation("Deleted Leave Type successfully");
 
         return Unit.Value;
     }
