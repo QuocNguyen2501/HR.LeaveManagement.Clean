@@ -1,6 +1,7 @@
 using HR.LeaveManagement.Persistence;
 using HR.LeaveManagement.Infrastructure;
 using HR.LeaveManagement.Application;
+using HR.LeaveManagement.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices();
+builder.Services.AddIdentityServices(builder.Configuration);
 
 builder.Services.AddControllers();
 
@@ -32,7 +34,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("All");
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

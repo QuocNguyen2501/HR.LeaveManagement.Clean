@@ -43,25 +43,24 @@ public class LeaveRequestsController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = response });
     }
 
-    [HttpPut("{id}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [HttpPut("UpdateRequest/{id}")]
+	[ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(400)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult> Put(string id, UpdateLeaveRequestCommand leaveRequest)
+    public async Task<ActionResult> Put([FromQuery]string id, [FromBody] UpdateLeaveRequestCommand leaveRequest)
     {
         leaveRequest.Id = id;
         await _mediator.Send(leaveRequest);
         return NoContent();
     }
 
-    [HttpPut("{id}")]
-    [Route("CancelRequest")]
+    [HttpPut("CancelRequest/{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(400)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult> CancelRequest(string id, ChangeLeaveRequestApprovalCommand leaveRequest)
+    public async Task<ActionResult> CancelRequest([FromQuery] string id, [FromBody] ChangeLeaveRequestApprovalCommand leaveRequest)
     {
         leaveRequest.Id = id;
         leaveRequest.Status = LeaveRequestStatus.Cancelled;
@@ -69,13 +68,12 @@ public class LeaveRequestsController : ControllerBase
         return NoContent();
     }
 
-    [HttpPut("{id}")]
-    [Route("ApproveRequest")]
+    [HttpPut("ApproveRequest/{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(400)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult> ApproveRequest(string id, ChangeLeaveRequestApprovalCommand leaveRequest)
+    public async Task<ActionResult> ApproveRequest([FromQuery] string id, [FromBody] ChangeLeaveRequestApprovalCommand leaveRequest)
     {
         leaveRequest.Id = id;
         leaveRequest.Status = LeaveRequestStatus.Approved;
@@ -83,13 +81,12 @@ public class LeaveRequestsController : ControllerBase
         return NoContent();
     }
 
-    [HttpPut("{id}")]
-    [Route("RejectRequest")]
+    [HttpPut("RejectRequest/{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(400)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult> RejectRequest(string id, ChangeLeaveRequestApprovalCommand leaveRequest)
+    public async Task<ActionResult> RejectRequest([FromQuery] string id, [FromBody]ChangeLeaveRequestApprovalCommand leaveRequest)
     {
         leaveRequest.Id = id;
         leaveRequest.Status = LeaveRequestStatus.Rejected;
@@ -101,7 +98,7 @@ public class LeaveRequestsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult> Delete(string id)
+    public async Task<ActionResult> Delete([FromQuery] string id)
     {
         var command = new DeleteLeaveRequestCommand(id);
         await _mediator.Send(command);
