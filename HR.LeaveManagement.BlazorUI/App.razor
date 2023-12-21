@@ -1,10 +1,9 @@
 ﻿<CascadingAuthenticationState>
 	<Router AppAssembly="@typeof(App).Assembly">
 		<Found Context="routeData">
-			<RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
 			<AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
 				<NotAuthorized>
-					@if (context.User?.Identity ? IsAuthenticated == false)
+					@if (context.User?.Identity?.IsAuthenticated == false)
 					{
 						<RedirectToLogin/>
 					}
@@ -26,5 +25,4 @@
 			</LayoutView>
 		</NotFound>
 	</Router>
-
 </CascadingAuthenticationState>
