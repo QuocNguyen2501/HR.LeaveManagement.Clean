@@ -1,6 +1,12 @@
 ﻿@page "/login"
 
 <h3>Login</h3>
+@if (string.IsNullOrEmpty(Msg) == false)
+{
+    <div class="alert alert-danger">
+        @Msg
+    </div>
+}
 
 <div class="row">
     <div class="col-md-4">
