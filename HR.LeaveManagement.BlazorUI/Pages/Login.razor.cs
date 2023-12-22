@@ -24,6 +24,7 @@ public partial class Login
         if(await AuthenticationService.AuthenticateAsync(Model.Email,Model.Password))
         {
             NavigationManager.NavigateTo("home");
+            return;
         }
         Msg = "Username/password combination unknown";
     }

@@ -29,7 +29,7 @@ namespace HR.LeaveManagement.BlazorUI.Services.Base
             }
         }
 
-        protected async Task AddBearerToken()
+        protected async Task AddBearerTokenAsync()
         {
             if (await _localStorage.ContainKeyAsync("token"))
             {

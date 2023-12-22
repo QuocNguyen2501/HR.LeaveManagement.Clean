@@ -31,5 +31,14 @@ For this session, I had revised some basic knowledge like:
     - Known what is Options pattern, and how to implement it in an ASP.NET project 
 
 # Section 6 (05 Dec - 07 Dec, 2023)
-- I have completed all features (LeaveType, LeaveAllocation, LeaveRequest) in HR.LeaveManagement.Api (without testing by Swagger). My feeling about this architecture, there are so many steps to implement a feature, it may be a difficulty for new developers. However,when we separate our code to smallest parts, then it is very short and easy for understanding and testing.
-- I also revised how to make an Exception Global Handler by a middleware the powerful feature in .Net.
+- Completed all features (LeaveType, LeaveAllocation, LeaveRequest) in HR.LeaveManagement.Api (without testing by Swagger). My feeling about this architecture, there are so many steps to implement a feature, it may be a difficulty for new developers. However,when we separate our code to smallest parts, then it is very short and easy for understanding and testing.
+- Revised how to make an Exception Global Handler by a middleware the powerful feature in .Net.
+
+
+# Section 7 to 9 (07 Dec - 22 Dec, 2023)
+- Finished some based unit-test and integration test as in this course.
+- Finished adding Identity to project.
+- Finished some basic UI in Blazor.
+
+# Section 10 (Skipped)
+
