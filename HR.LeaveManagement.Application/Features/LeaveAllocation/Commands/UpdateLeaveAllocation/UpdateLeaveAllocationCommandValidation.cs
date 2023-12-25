@@ -25,7 +25,7 @@ public class UpdateLeaveAllocationCommandValidation : AbstractValidator<UpdateLe
 
     public async Task<bool> LeaveAllocationMustExist(string id, CancellationToken token)
     {
-        var leaveType = await _leaveAllocationRepository.GetAsyncById(id);
+        var leaveType = await _leaveAllocationRepository.GetByIdAsync(id);
         return leaveType != null;
     }
 }

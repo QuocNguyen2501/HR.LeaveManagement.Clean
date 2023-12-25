@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HR.LeaveManagement.Application.Contracts.Identity;
+﻿using HR.LeaveManagement.Application.Contracts.Identity;
 using HR.LeaveManagement.Application.Models.Identity;
 using HR.LeaveManagement.Identity.Models;
 using Microsoft.AspNetCore.Identity;
@@ -31,9 +26,16 @@ namespace HR.LeaveManagement.Identity.Services
 			};
 		}
 
-		public Task<List<Employee>> GetEmployees()
+		public async Task<List<Employee>> GetEmployees()
 		{
-			throw new NotImplementedException();
+			var employees = await _userManager.GetUsersInRoleAsync("Employee");
+			return employees.Select(q => new Employee
+			{
+				Id = q.Id,
+				Email = q.Email,
+				FirstName = q.FirstName,
+				LastName = q.LastName
+			}).ToList();
 		}
 	}
 }

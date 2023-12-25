@@ -42,7 +42,7 @@ public class MockLeaveTypeRepository
                     return Task.CompletedTask;
                 });
         mockRepo.Setup(r => r.GetAsync()).ReturnsAsync(mockDb);
-        mockRepo.Setup(r => r.GetAsyncById(It.IsAny<string>()))
+        mockRepo.Setup(r => r.GetByIdAsync(It.IsAny<string>()))
             .Returns((string id) =>
             {
                 var result = mockDb.Find(f => f.Id == id);

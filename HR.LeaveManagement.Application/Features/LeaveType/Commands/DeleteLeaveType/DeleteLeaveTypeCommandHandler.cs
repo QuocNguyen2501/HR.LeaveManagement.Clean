@@ -19,7 +19,7 @@ public class DeleteLeaveTypeCommandHandler : IRequestHandler<DeleteLeaveTypeComm
     public async Task<Unit> Handle(DeleteLeaveTypeCommand request, CancellationToken cancellationToken)
     {
         // retrieve domain entity object
-        var leaveType = await _leaveTypeRepository.GetAsyncById(request.Id);
+        var leaveType = await _leaveTypeRepository.GetByIdAsync(request.Id);
 
         //verify that record exist
         if (leaveType == null)

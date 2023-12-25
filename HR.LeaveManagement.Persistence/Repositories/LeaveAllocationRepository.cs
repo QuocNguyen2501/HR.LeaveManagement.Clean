@@ -15,7 +15,7 @@ namespace HR.LeaveManagement.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<bool> AllocationExists(string userId, int leaveTypeId, int period)
+        public Task<bool> AllocationExists(string userId, string leaveTypeId, int period)
         {
             throw new NotImplementedException();
         }

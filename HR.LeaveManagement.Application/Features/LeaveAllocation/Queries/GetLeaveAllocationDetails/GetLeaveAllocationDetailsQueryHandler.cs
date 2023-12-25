@@ -24,7 +24,7 @@ public class GetLeaveAllocationDetailsQueryHandler : IRequestHandler<GetLeaveAll
 
     public async Task<LeaveAllocationDetailsDto> Handle(GetLeaveAllocationDetailsQuery request, CancellationToken cancellationToken)
     {
-        var leaveAllocation = await _leaveAllocationRepository.GetAsyncById(request.Id);
+        var leaveAllocation = await _leaveAllocationRepository.GetByIdAsync(request.Id);
         if (leaveAllocation == null)
         {
             throw new NotFoundException(nameof(Domain.LeaveAllocation), request.Id);

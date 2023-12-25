@@ -33,7 +33,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     }
 
 
-    public async Task<T> GetAsyncById(string id)
+    public async Task<T> GetByIdAsync(string id)
     {
         return await _context.Set<T>().FirstOrDefaultAsync(f=>f.Id == id);
     }

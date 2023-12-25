@@ -25,7 +25,7 @@ public class ChangeLeaveRequestApprovalCommandHandler : IRequestHandler<ChangeLe
 
     public async Task<Unit> Handle(ChangeLeaveRequestApprovalCommand request, CancellationToken token)
     {
-        var leaveRequest = await _leaveRequestRepository.GetAsyncById(request.Id);
+        var leaveRequest = await _leaveRequestRepository.GetByIdAsync(request.Id);
 
         if (leaveRequest is null)
         {

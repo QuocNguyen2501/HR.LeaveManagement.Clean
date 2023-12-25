@@ -19,7 +19,7 @@ public class UpdateLeaveRequestCommandValidation : AbstractValidator<UpdateLeave
 
     private async Task<bool> LeaveRequestMustExist(string id, CancellationToken token)
     {
-        var leaveRequest = await _leaveRequestRepository.GetAsyncById(id);
+        var leaveRequest = await _leaveRequestRepository.GetByIdAsync(id);
         return leaveRequest != null;
     }
 }

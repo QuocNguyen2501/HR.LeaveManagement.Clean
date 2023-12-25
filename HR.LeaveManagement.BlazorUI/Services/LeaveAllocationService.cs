@@ -9,4 +9,9 @@ public class LeaveAllocationService : BaseHttpService, ILeaveAllocationService
     public LeaveAllocationService(IClient client, ILocalStorageService localStorage) : base(client,localStorage)
     {
     }
+
+    public Task<Response<Guid>> CreateLeaveAllocations(int leaveTypeId)
+    {
+        throw new NotImplementedException();
+    }
 }

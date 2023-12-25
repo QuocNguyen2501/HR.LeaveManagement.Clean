@@ -22,7 +22,7 @@ public class UpdateLeaveRequestCommandHandler : IRequestHandler<UpdateLeaveReque
     }
     public async Task<Unit> Handle(UpdateLeaveRequestCommand request, CancellationToken cancellationToken)
     {
-        var leaveRequest = await _leaveRequestRepository.GetAsyncById(request.Id);
+        var leaveRequest = await _leaveRequestRepository.GetByIdAsync(request.Id);
         if (leaveRequest is null)
         {
             throw new NotFoundException(nameof(Domain.LeaveRequest), request.Id);

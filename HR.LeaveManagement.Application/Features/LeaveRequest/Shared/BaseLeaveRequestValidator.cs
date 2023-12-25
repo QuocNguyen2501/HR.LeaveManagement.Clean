@@ -25,7 +25,7 @@ public class BaseLeaveRequestValidator: AbstractValidator<BaseLeaveRequest>
 
     private async Task<bool> LeaveTypeMustExist(string id, CancellationToken token)
     {
-        var leaveType = await _leaveTypeRepository.GetAsyncById(id);
+        var leaveType = await _leaveTypeRepository.GetByIdAsync(id);
         return leaveType != null;
     }
 }

@@ -24,4 +24,12 @@
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Models\LeaveRequests\" />
+    <None Remove="Models\LeaveAllocations\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\LeaveRequests\" />
+    <Folder Include="Models\LeaveAllocations\" />
+  </ItemGroup>
 </Project>

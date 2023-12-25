@@ -20,7 +20,7 @@ public class GetLeaveTypeDetailsQueryHandler : IRequestHandler<GetLeaveTypeDetai
 
     public async Task<LeaveTypeDetailsDto> Handle(GetLeaveTypeDetailsQuery request, CancellationToken cancellationToken)
     {
-        var leaveType = await _leaveTypeRepository.GetAsyncById(request.Id);
+        var leaveType = await _leaveTypeRepository.GetByIdAsync(request.Id);
 
         if(leaveType==null){
             throw new NotFoundException(nameof(Domain.LeaveType), request.Id);
