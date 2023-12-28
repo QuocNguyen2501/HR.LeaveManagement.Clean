@@ -13,7 +13,7 @@ namespace HR.LeaveManagement.Application.MappingProfiles
             CreateMap<LeaveRequest, Features.LeaveRequest.Queries.GetLeaveRequests.LeaveRequestDto>();
             CreateMap<LeaveRequest, Features.LeaveRequest.Queries.GetLeaveRequestsByUserId.LeaveRequestDto>();
             CreateMap<CreateLeaveRequestCommand, LeaveRequest>().AfterMap((src,des)=>{
-                des.Id = Guid.NewGuid().ToString();
+                des.Id = Ulid.NewUlid().ToString();
             });
         }
     }

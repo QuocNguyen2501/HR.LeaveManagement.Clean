@@ -42,10 +42,9 @@ else
 					<th>@leaveType.Name</th>
 					<th>@leaveType.DefaultDays</th>
 					<th>
-						<button @onclick="@(()=> DetailsLeaveType(leaveType.Id))" class="btn btn-primary">Details</button>
-						<button @onclick="@(()=> AllocateLeaveType(leaveType.Id))" class="btn btn-dark">Allocate Leave</button>
+						<button @onclick="@(()=> AllocateLeaveType(leaveType.Id,leaveType.Name))" class="btn btn-dark">Allocate Leave</button>
 						<button @onclick="@(()=> EditLeaveType(leaveType.Id))" class="btn btn-warning">Edit</button>
-						<button @onclick="@(()=> DeleteLeaveType(leaveType.Id))" class="btn btn-danger">Delete</button>
+						<button @onclick="@(()=> DeleteLeaveType(leaveType.Id,leaveType.Name))" class="btn btn-danger">Delete</button>
 					</th>
 				</tr>
 			}

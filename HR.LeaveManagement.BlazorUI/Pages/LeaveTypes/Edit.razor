@@ -1,0 +1,14 @@
+﻿@page "/leavetypes/edit/{id}"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles="Administrator")]
+
+<h3>Edit Leave Type</h3>
+
+@if (!string.IsNullOrEmpty(Message))
+{
+	<div class="alert alert-danger">
+		@Message
+	</div>
+}
+
+<FormComponent ButtonText="Update" LeaveType="LeaveTypeVM" OnValidSubmit="@EditLeaveType" />

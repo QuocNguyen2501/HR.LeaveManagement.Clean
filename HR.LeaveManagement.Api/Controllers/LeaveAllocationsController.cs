@@ -4,12 +4,14 @@ using HR.LeaveManagement.Application.Features.LeaveAllocation.Commands.UpdateLea
 using HR.LeaveManagement.Application.Features.LeaveAllocation.Queries.GetLeaveAllocationDetails;
 using HR.LeaveManagement.Application.Features.LeaveAllocation.Queries.GetLeaveAllocations;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HR.LeaveManagement.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class LeaveAllocationsController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -20,7 +22,7 @@ public class LeaveAllocationsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<List<LeaveAllocationDto>> Get()
+    public async Task<List<LeaveAllocationDto>> Get(bool isLoggedInUser = false)
     {
         var leaveAllocations = await _mediator.Send(new GetLeaveAllocationsQuery());
         return leaveAllocations;
@@ -54,7 +56,9 @@ public class LeaveAllocationsController : ControllerBase
     }
 
     [HttpDelete]
-    public async Task<ActionResult> Delete(string id)
+	[ProducesResponseType(StatusCodes.Status204NoContent)]
+	[ProducesResponseType(StatusCodes.Status404NotFound)]
+	public async Task<ActionResult> Delete(string id)
     {
         await _mediator.Send(new DeleteLeaveAllocationCommand(id));
         return NoContent();

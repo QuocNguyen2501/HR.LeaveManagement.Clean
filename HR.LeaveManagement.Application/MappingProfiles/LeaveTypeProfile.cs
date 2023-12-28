@@ -15,7 +15,7 @@ public class LeaveTypeProfile : Profile
         CreateMap<LeaveType,LeaveTypeDetailsDto>();
         CreateMap<CreateLeaveTypeCommand, LeaveType>().AfterMap((src, des) =>
         {
-            des.Id = Guid.NewGuid().ToString();
+            des.Id = Ulid.NewUlid().ToString();
         });
         CreateMap<UpdateLeaveTypeCommand, LeaveType>();
     }

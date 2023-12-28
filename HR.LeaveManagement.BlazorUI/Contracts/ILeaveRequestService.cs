@@ -5,11 +5,11 @@ namespace HR.LeaveManagement.BlazorUI.Contracts;
 
 public interface ILeaveRequestService
 {
-    Task<AdminLeaveRequestViewVM> GetAdminLeaveRequestList();
-    Task<EmployeeLeaveRequestViewVM> GetUserLeaveRequests();
-    Task<Response<Guid>> CreateLeaveRequest(LeaveRequestVM leaveRequest);
-    Task<LeaveRequestVM> GetLeaveRequest(int id);
-    Task DeleteLeaveRequest(int id);
-    Task<Response<Guid>> ApproveLeaveRequest(int id, bool approved);
-    Task<Response<Guid>> CancelLeaveRequest(int id);
+	Task<AdminLeaveRequestViewVM> GetAdminLeaveRequestList();
+	Task<EmployeeLeaveRequestViewVM> GetUserLeaveRequests();
+	Task<Response<Ulid>> CreateLeaveRequest(LeaveRequestVM leaveRequest);
+	Task<LeaveRequestVM> GetLeaveRequest(string id);
+	Task<Response<Ulid>> DeleteLeaveRequest(string id);
+	Task<Response<Ulid>> ApproveLeaveRequest(string id, LeaveRequestStatus status);
+	Task<Response<Ulid>> CancelLeaveRequest(string id);
 }

@@ -23,8 +23,13 @@ public class UpdateLeaveTypeCommandHandler : IRequestHandler<UpdateLeaveTypeComm
     }
     public async Task<Unit> Handle(UpdateLeaveTypeCommand request, CancellationToken cancellationToken)
     {
-        // Validate incoming data
-        var validator = new UpdateLeaveTypeCommandValidator(_leaveTypeRepository);
+		var leaveType = await _leaveTypeRepository.GetByIdAsync(request.Id);
+		if (leaveType is null)
+		{
+			throw new NotFoundException(nameof(Domain.LeaveType), request.Id);
+		}
+		// Validate incoming data
+		var validator = new UpdateLeaveTypeCommandValidator(_leaveTypeRepository);
         var validatorResult = await validator.ValidateAsync(request);
         if(validatorResult.Errors.Any())
         {
@@ -32,10 +37,11 @@ public class UpdateLeaveTypeCommandHandler : IRequestHandler<UpdateLeaveTypeComm
             throw new BadRequestException("Invalid Leave Type", validatorResult);
         }
 
-        // Convert to domain entity object
-        var leaveType = _mapper.Map<Domain.LeaveType>(request);
-        // Update to database
-        await _leaveTypeRepository.UpdateAsync(leaveType);
+		// Convert to domain entity object
+		leaveType.DefaultDays = request.DefaultDays;
+        leaveType.Name = request.Name;
+		// Update to database
+		await _leaveTypeRepository.UpdateAsync(leaveType);
         // return Unit value
         return Unit.Value;
     }

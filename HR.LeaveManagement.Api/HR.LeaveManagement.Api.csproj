@@ -9,9 +9,13 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
 
   <ItemGroup>
+    <Compile Remove="logs\**" />
     <Compile Remove="Models\**" />
+    <Content Remove="logs\**" />
     <Content Remove="Models\**" />
+    <EmbeddedResource Remove="logs\**" />
     <EmbeddedResource Remove="Models\**" />
+    <None Remove="logs\**" />
     <None Remove="Models\**" />
   </ItemGroup>
   <ItemGroup>

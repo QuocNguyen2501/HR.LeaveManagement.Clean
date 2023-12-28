@@ -37,8 +37,11 @@ For this session, I had revised some basic knowledge like:
 
 # Section 7 to 9 (07 Dec - 22 Dec, 2023)
 - Finished some based unit-test and integration test as in this course.
-- Finished adding Identity to project.
+- Finished adding Identity to project. (This is quite complex and take time)
 - Finished some basic UI in Blazor.
 
-# Section 10 (Skipped)
+# Section 10 to 13 (23 Dec,2023 - 28 Dec, 2023 )
+- Implement all features follow the course
+- Replace GUID by Ulid to reduce the size of the ID fields and performance.
+- Add Serilog and write logs in to a text file using `Serilog.Sinks.File` .
 

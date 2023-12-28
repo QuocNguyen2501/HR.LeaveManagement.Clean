@@ -27,11 +27,14 @@ namespace HR.LeaveManagement.Persistence.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateModified")
+                    b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("EmployeeId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LeaveTypeId")
                         .HasColumnType("nvarchar(450)");
@@ -54,10 +57,10 @@ namespace HR.LeaveManagement.Persistence.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateModified")
+                    b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateRequested")
@@ -97,10 +100,10 @@ namespace HR.LeaveManagement.Persistence.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateModified")
+                    b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DefaultDays")
@@ -118,9 +121,9 @@ namespace HR.LeaveManagement.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "fc8f7fc1-39c2-4d4c-9808-e04101334436",
-                            DateCreated = new DateTime(2023, 12, 5, 2, 1, 6, 245, DateTimeKind.Utc).AddTicks(3648),
-                            DateModified = new DateTime(2023, 12, 5, 2, 1, 6, 245, DateTimeKind.Utc).AddTicks(3650),
+                            Id = "67b25f1a-1656-45b1-998d-dfafbd0c3aa7",
+                            DateCreated = new DateTime(2023, 12, 28, 4, 37, 59, 66, DateTimeKind.Utc).AddTicks(3425),
+                            DateModified = new DateTime(2023, 12, 28, 4, 37, 59, 66, DateTimeKind.Utc).AddTicks(3428),
                             DefaultDays = 10,
                             Name = "Vacation"
                         });

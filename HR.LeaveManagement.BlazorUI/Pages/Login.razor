@@ -1,4 +1,4 @@
-﻿@page "/login"
+﻿@page "/users/login"
 
 <h3>Login</h3>
 @if (string.IsNullOrEmpty(Msg) == false)
@@ -22,7 +22,7 @@
                 <InputText type="password" id="password" class="form-control" @bind-Value="@Model.Password"></InputText>
                 <ValidationMessage For="@(()=>Model.Password)" />
             </div>
-            <div class="form-group">
+            <div class="btn-end">
                 <input type="submit" value="Login" class="btn btn-primary" />
             </div>
         </EditForm>

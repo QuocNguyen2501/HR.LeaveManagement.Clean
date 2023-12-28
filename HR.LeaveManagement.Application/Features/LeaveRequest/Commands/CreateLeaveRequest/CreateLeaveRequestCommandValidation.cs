@@ -12,6 +12,5 @@ public class CreateLeaveRequestCommandValidation : AbstractValidator<CreateLeave
         RuleFor(p => p.DateRequested).NotNull();
         RuleFor(p => p.RequestComments).NotNull().MaximumLength(255);
         RuleFor(p => p.Status).NotNull();
-        RuleFor(p => p.RequestingEmployeedId).NotNull();
     }
 }

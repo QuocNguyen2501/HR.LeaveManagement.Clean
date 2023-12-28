@@ -16,16 +16,16 @@ namespace HR.LeaveManagement.BlazorUI.Services.Base
 
 		}
 
-        protected Response<Guid> ConvertApiExceptions<Guid>(ApiException ex)
+        protected Response<Ulid> ConvertApiExceptions<Ulid>(ApiException ex)
         {
             switch(ex.StatusCode)
             {
                 case (int)HttpStatusCode.BadRequest:
-                    return new Response<Guid>() { Message = "Invalid data was submitted", ValidationErrors = ex.Response, Success = false };
+                    return new Response<Ulid>() { Message = "Invalid data was submitted", ValidationErrors = ex.Response, Success = false };
                 case (int)HttpStatusCode.NotFound:
-                    return new Response<Guid>() { Message = "The record was not found", Success = false };
+                    return new Response<Ulid>() { Message = "The record was not found", Success = false };
                 default:
-                    return new Response<Guid>() { Message = "Something went wrong, please try again", Success=false };
+                    return new Response<Ulid>() { Message = "Something went wrong, please try again", Success=false };
             }
         }
 

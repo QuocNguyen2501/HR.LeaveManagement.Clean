@@ -1,0 +1,55 @@
+﻿@page "/leaverequests/details/{id}"
+
+
+<h3>Details</h3>
+
+<div class="alert alert-@ClassName">
+	<h4 class="alert-heading">@HeadingText</h4>
+	<p>
+		<strong>Empoyee name:</strong> @Model.Employee.Firstname @Model.Employee.Lastname <br/>
+	</p>
+	<hr/>
+	<p>
+		Date Requested - @Model.DateRequested
+	</p>
+</div>
+
+<div>
+	<hr/>
+	<dl class="row">
+		<dt class="col-sm-2">
+			Start Date
+		</dt>
+		<dt class="col-sm-10">
+			@Model.StartDate.ToString("yyyy-MM-dd")
+		</dt>
+		<dt class="col-sm-2">
+			End Date
+		</dt>
+		<dt class="col-sm-10">
+			@Model.EndDate.ToString("yyyy-MM-dd")
+		</dt>
+		<dt class="col-sm-2">
+			Leave Type
+		</dt>
+		<dt class="col-sm-10">
+			@Model.LeaveType.Name
+		</dt>
+		<dt class="col-sm-2">
+			Request Comments
+		</dt>
+		<dt class="col-sm-10">
+			@Model.RequestComments
+		</dt>
+	</dl>
+</div>
+<div>
+	@if (Model.Status == LeaveRequestStatus.New)
+	{
+		<button class="btn btn-success" @onclick="(()=> ChangeApproval(LeaveRequestStatus.Approved))">Approve</button>
+		<button class="btn btn-success" @onclick="(()=> ChangeApproval(LeaveRequestStatus.Rejected))">Reject</button>
+	}
+	<BackToList Target="leaverequests/" />
+</div>
+
+

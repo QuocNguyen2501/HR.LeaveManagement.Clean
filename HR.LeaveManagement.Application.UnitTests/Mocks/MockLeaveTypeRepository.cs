@@ -30,7 +30,7 @@ public class MockLeaveTypeRepository
     public static Mock<ILeaveTypeRepository> InitialLeaveTypeMockRepository() 
     {
         var mockRepo = new Mock<ILeaveTypeRepository>();
-        mockRepo.Setup(r => r.IsLeaveTypeUnique(It.IsAny<string>()))
+        mockRepo.Setup(r => r.IsLeaveTypeUnique(It.IsAny<string>(), It.IsAny<string>()))
             .Returns((string name) =>
             {
                 var result = mockDb.Any(a => a.Name != name);

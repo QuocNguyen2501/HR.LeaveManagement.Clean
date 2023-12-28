@@ -24,12 +24,12 @@ public partial class Index
 
     protected void GoToLogin()
     {
-        NavigationManager.NavigateTo("login/");
+        NavigationManager.NavigateTo("/users/login/");
     }
 
     protected void GoToRegister()
     {
-        NavigationManager.NavigateTo("register/");
+        NavigationManager.NavigateTo("/users/register/");
     }
 
     protected async void Logout()

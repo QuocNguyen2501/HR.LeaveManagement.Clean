@@ -10,8 +10,19 @@ public class LeaveAllocationService : BaseHttpService, ILeaveAllocationService
     {
     }
 
-    public Task<Response<Guid>> CreateLeaveAllocations(int leaveTypeId)
+    public async Task<Response<Ulid>> CreateLeaveAllocations(string leaveTypeId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var response = new Response<Ulid>();
+            CreateLeaveAllocationCommand command = new CreateLeaveAllocationCommand { LeaveTypeId = leaveTypeId };
+
+            await _client.LeaveAllocationsPOSTAsync(command);
+            return response;
+        }
+        catch (ApiException ex)
+        {
+            return ConvertApiExceptions<Ulid>(ex);
+        }
     }
 }

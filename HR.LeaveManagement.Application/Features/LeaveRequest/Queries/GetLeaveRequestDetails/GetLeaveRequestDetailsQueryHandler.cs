@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HR.LeaveManagement.Application.Contracts.Identity;
 using HR.LeaveManagement.Application.Contracts.Persistence;
 using HR.LeaveManagement.Application.Exceptions;
 using MediatR;
@@ -7,13 +8,15 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequest.Queries.GetLeaveR
 
 internal class GetLeaveRequestDetailsQueryHandler : IRequestHandler<GetLeaveRequestDetailsQuery, LeaveRequestDetailsDto>
 {
-    private IMapper _mapper;
-    private ILeaveRequestRepository _leaveRequestRepository;
-    public GetLeaveRequestDetailsQueryHandler(IMapper mapper, ILeaveRequestRepository  leaveRequestRepository)
+    private readonly IMapper _mapper;
+    private readonly ILeaveRequestRepository _leaveRequestRepository;
+    private readonly IUserService _userService;
+    public GetLeaveRequestDetailsQueryHandler(IMapper mapper, ILeaveRequestRepository  leaveRequestRepository, IUserService userService)
     {
         _mapper = mapper;
         _leaveRequestRepository = leaveRequestRepository;
-    }
+		_userService = userService;
+	}
 
     public async Task<LeaveRequestDetailsDto> Handle(GetLeaveRequestDetailsQuery request, CancellationToken cancellationToken)
     {
@@ -22,6 +25,8 @@ internal class GetLeaveRequestDetailsQueryHandler : IRequestHandler<GetLeaveRequ
         {
             throw new NotFoundException(nameof(Domain.LeaveRequest), request.Id);
         }
-        return _mapper.Map<LeaveRequestDetailsDto>(leaveRequest);
+        var result = _mapper.Map<LeaveRequestDetailsDto>(leaveRequest);
+        result.Employee = await _userService.GetEmployee(leaveRequest.RequestingEmployeedId);
+		return result;
     }
 }

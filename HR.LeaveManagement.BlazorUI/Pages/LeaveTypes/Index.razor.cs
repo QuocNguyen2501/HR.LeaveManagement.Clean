@@ -1,16 +1,24 @@
 using Microsoft.AspNetCore.Components;
 using HR.LeaveManagement.BlazorUI.Models.LeaveTypes;
 using HR.LeaveManagement.BlazorUI.Contracts;
+using Microsoft.JSInterop;
 
 namespace HR.LeaveManagement.BlazorUI.Pages.LeaveTypes;
 
 public partial class Index
 {
 	[Inject]
-	public NavigationManager NavigationManager { get; set; }
+	NavigationManager NavigationManager { get; set; }
 
 	[Inject]
-	public ILeaveTypeService LeaveTypeService { get; set; }
+	ILeaveTypeService LeaveTypeService { get; set; }
+
+	[Inject]
+	ILeaveAllocationService LeaveAllocationService { get; set; }
+
+	[Inject]
+	IJSRuntime js { get; set; }
+
 
 	public string Message { get; set; } = string.Empty;
 	public List<LeaveTypeVM> LeaveTypes { get; private set; }
@@ -26,21 +34,27 @@ public partial class Index
 		NavigationManager.NavigateTo($"leavetypes/details/{id}");
 	}
 
-	protected void AllocateLeaveType(string id)
+	protected async Task AllocateLeaveType(string leaveTypeId,string leaveTypeName)
 	{
-
+		var confirm =  await js.InvokeAsync<bool>("confirm", $"Do you want to allocate {leaveTypeName} to your employees ?");
+		if(confirm)
+			await LeaveAllocationService.CreateLeaveAllocations(leaveTypeId);
 	}
 
-	protected async Task DeleteLeaveType(string id)
+	protected async Task DeleteLeaveType(string id, string name)
 	{
-		var response = await LeaveTypeService.DeleteLeaveType(id);
-		if (response.Success)
+		var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {name}");
+		if (confirm)
 		{
-			StateHasChanged();
-		}
-		else
-		{
-			Message = response.Message;
+			var response = await LeaveTypeService.DeleteLeaveType(id);
+			if (response.Success)
+			{
+				LeaveTypes = LeaveTypes.Where(d => d.Id != id).ToList();
+			}
+			else
+			{
+				Message = response.Message;
+			}
 		}
 	}
 

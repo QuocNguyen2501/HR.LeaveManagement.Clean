@@ -1,6 +1,7 @@
 ﻿using HR.LeaveManagement.Application.Contracts.Persistence;
 using HR.LeaveManagement.Domain;
 using HR.LeaveManagement.Persistence.DatabaseContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace HR.LeaveManagement.Persistence.Repositories
 {
@@ -10,19 +11,25 @@ namespace HR.LeaveManagement.Persistence.Repositories
         {
         }
 
-        public Task AddAllocations(List<LeaveAllocation> allocations)
+        public async Task AddAllocations(List<LeaveAllocation> allocations)
         {
-            throw new NotImplementedException();
+            await _context.AddRangeAsync(allocations);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<bool> AllocationExists(string userId, string leaveTypeId, int period)
+        public async Task<bool> AllocationExists(string userId, string leaveTypeId, int period)
         {
-            throw new NotImplementedException();
+           
+                return await _context.LeaveAllocations.AnyAsync(q => q.EmployeeId == userId
+                                                                    && q.LeaveTypeId == leaveTypeId
+                                                                    && q.Period == period);
+            
         }
 
-        public Task<List<LeaveAllocation>> GetLeaveAllocationsWithDetails()
+        public async Task<List<LeaveAllocation>> GetLeaveAllocationsWithDetails()
         {
-            throw new NotImplementedException();
+            var leaveAllocations = await _context.LeaveAllocations.Include(q => q.LeaveType).ToListAsync();
+            return leaveAllocations;
         }
 
         public Task<List<LeaveAllocation>> GetLeaveAllocationsWithDetails(string userId)
@@ -30,14 +37,15 @@ namespace HR.LeaveManagement.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<LeaveAllocation> GetLeaveAllocationWithDetails(int id)
+        public async Task<LeaveAllocation> GetLeaveAllocationWithDetails(string id)
         {
-            throw new NotImplementedException();
-        }
+          return await _context.LeaveAllocations.FirstOrDefaultAsync(w => w.Id == id);
+		}
 
-        public Task<LeaveAllocation> GetUserAllocations(string userId, int leaveTypeId)
+        public async Task<LeaveAllocation> GetUserAllocations(string userId, string leaveTypeId)
         {
-            throw new NotImplementedException();
+            var leaveAllocation = await _context.LeaveAllocations.FirstOrDefaultAsync(w => w.EmployeeId == userId && w.LeaveTypeId == leaveTypeId);
+            return leaveAllocation;
         }
     }
 }

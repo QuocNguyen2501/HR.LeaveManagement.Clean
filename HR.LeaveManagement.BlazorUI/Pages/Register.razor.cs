@@ -8,7 +8,7 @@ namespace HR.LeaveManagement.BlazorUI.Pages
     {
         public RegisterVM Model { get; set; }
 
-        public string Msg { get; set; }
+        public string Message { get; private set; }
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }
@@ -16,10 +16,6 @@ namespace HR.LeaveManagement.BlazorUI.Pages
         [Inject]
         private IAuthenticationService AuthenticationService { get; set; }
 
-        public Register()
-        {
-            
-        }
 
         public async Task HandleRegister()
         {
@@ -28,7 +24,7 @@ namespace HR.LeaveManagement.BlazorUI.Pages
             {
                 NavigationManager.NavigateTo("home");
             }
-            Msg = "Something went wrong, please try again.";
+            Message = "Something went wrong, please try again.";
         }
 
         protected override void OnInitialized()

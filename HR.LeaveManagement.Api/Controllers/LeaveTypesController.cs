@@ -62,9 +62,11 @@ public class LeaveTypesController : ControllerBase
 
     // DELETE api/<LeaveTypesController>/{guid}
     [HttpDelete("{id}")]
-    public async Task<ActionResult> Delete(string id)
+	[ProducesResponseType(StatusCodes.Status204NoContent)]
+	[ProducesResponseType(StatusCodes.Status404NotFound)]
+	public async Task<ActionResult> Delete(string id)
     {
-        var result = await _mediator.Send(new DeleteLeaveTypeCommand(id));
+        await _mediator.Send(new DeleteLeaveTypeCommand(id));
         return NoContent();
     }
 }

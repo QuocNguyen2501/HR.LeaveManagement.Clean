@@ -10,6 +10,6 @@ public class CreateLeaveRequestCommand:IRequest<string>
     public string LeaveTypeId { get; set; }
     public DateTime DateRequested { get; set; }
     public string RequestComments { get; set; }
-    public LeaveRequestStatus Status { get; set; }
+    public LeaveRequestStatus Status { get; set; } = LeaveRequestStatus.New;
     public string RequestingEmployeedId { get; set; }
 }
