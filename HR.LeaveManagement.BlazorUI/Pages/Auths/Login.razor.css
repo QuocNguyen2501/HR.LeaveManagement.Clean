@@ -1,0 +1,13 @@
+﻿#login-form{
+    width:500px;
+}
+
+.slot-end {
+    margin: 15px 0px;
+    text-align: right;
+}
+
+.slot-start {
+    margin: 15px 0px;
+    text-align: left;
+}

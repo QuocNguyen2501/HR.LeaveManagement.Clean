@@ -1,0 +1,25 @@
+﻿@typeparam TItem
+<table class="table">
+	<thead>
+		@TableHeader
+	</thead>
+	<tbody>
+		@if(Items.Count()>0)
+		{
+			@foreach(var item in Items)
+			{
+				if (RowTemplate is not null)
+				{
+					@RowTemplate(item)
+				}
+			}
+
+		}
+		else
+		{
+			<tr>
+				<td colspan="@typeof(TItem).GetProperties().Length">No data to display</td>
+			</tr>
+		}
+	</tbody>
+</table>

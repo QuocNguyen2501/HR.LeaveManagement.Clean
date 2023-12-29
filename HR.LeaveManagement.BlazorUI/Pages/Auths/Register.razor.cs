@@ -2,7 +2,7 @@ using HR.LeaveManagement.BlazorUI.Contracts;
 using HR.LeaveManagement.BlazorUI.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace HR.LeaveManagement.BlazorUI.Pages
+namespace HR.LeaveManagement.BlazorUI.Pages.Auths
 {
     public partial class Register
     {
@@ -20,7 +20,7 @@ namespace HR.LeaveManagement.BlazorUI.Pages
         public async Task HandleRegister()
         {
             var result = await AuthenticationService.RegisterAsync(Model.FirstName, Model.LastName, Model.UserName, Model.Email, Model.Password);
-            if(result)
+            if (result)
             {
                 NavigationManager.NavigateTo("home");
             }

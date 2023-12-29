@@ -1,19 +1,18 @@
-
 using HR.LeaveManagement.BlazorUI.Contracts;
 using Microsoft.AspNetCore.Components;
 
-namespace HR.LeaveManagement.BlazorUI.Pages;
+namespace HR.LeaveManagement.BlazorUI.Pages.Auths;
 
 public partial class Logout
 {
     [Inject]
-    private IAuthenticationService _authService {get;set;}
+    private IAuthenticationService _authService { get; set; }
     [Inject]
-    private NavigationManager _navManager{get;set;}
-    
+    private NavigationManager _navManager { get; set; }
+
     public Logout()
     {
-        
+
     }
 
     protected override async Task OnInitializedAsync()

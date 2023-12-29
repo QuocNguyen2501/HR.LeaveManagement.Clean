@@ -1,5 +1,5 @@
 ﻿@page "/leavetypes/"
-
+@using HR.LeaveManagement.BlazorUI.Components.Table;
 <h3>Leave Types</h3>
 
 <div class="m-2 d-flex justify-content-end">
@@ -13,42 +13,34 @@
 	</div>
 }
 
-@if (LeaveTypes == null)
-{
-	<p>Loading data...</p>
-}
-else
-{
-	<table class="table">
-		<thead>
-			<tr>
-				<th>
-					Id
-				</th>
-				<th>
-					Name
-				</th>
-				<th>
-					Default Days
-				</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach (var leaveType in LeaveTypes)
-			{
-				<tr>
-					<th>@leaveType.Id</th>
-					<th>@leaveType.Name</th>
-					<th>@leaveType.DefaultDays</th>
-					<th>
-						<button @onclick="@(()=> AllocateLeaveType(leaveType.Id,leaveType.Name))" class="btn btn-dark">Allocate Leave</button>
-						<button @onclick="@(()=> EditLeaveType(leaveType.Id))" class="btn btn-warning">Edit</button>
-						<button @onclick="@(()=> DeleteLeaveType(leaveType.Id,leaveType.Name))" class="btn btn-danger">Delete</button>
-					</th>
-				</tr>
-			}
-		</tbody>
-	</table>
-}
+
+<TableComponent Items="LeaveTypes" Context="leaveType">
+	<TableHeader>
+		<tr>
+			<th>
+				Id
+			</th>
+			<th>
+				Name
+			</th>
+			<th>
+				Default Days
+			</th>
+			<th></th>
+		</tr>
+	</TableHeader>
+	<RowTemplate>
+		<tr>
+			<th>@leaveType.Id</th>
+			<th>@leaveType.Name</th>
+			<th>@leaveType.DefaultDays</th>
+			<th>
+				<button @onclick="@(()=> AllocateLeaveType(leaveType.Id,leaveType.Name))" class="btn btn-dark">Allocate Leave</button>
+				<button @onclick="@(()=> EditLeaveType(leaveType.Id))" class="btn btn-warning">Edit</button>
+				<button @onclick="@(()=> DeleteLeaveType(leaveType.Id,leaveType.Name))" class="btn btn-danger">Delete</button>
+			</th>
+		</tr>
+	</RowTemplate>
+</TableComponent>
+
 

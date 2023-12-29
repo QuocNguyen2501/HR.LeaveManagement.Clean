@@ -2,7 +2,7 @@
 using HR.LeaveManagement.BlazorUI.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace HR.LeaveManagement.BlazorUI.Pages;
+namespace HR.LeaveManagement.BlazorUI.Pages.Auths;
 
 public partial class Login
 {
@@ -21,7 +21,7 @@ public partial class Login
 
     public async void HandleLogin()
     {
-        if(await AuthenticationService.AuthenticateAsync(Model.Email,Model.Password))
+        if (await AuthenticationService.AuthenticateAsync(Model.Email, Model.Password))
         {
             NavigationManager.NavigateTo("home");
             return;
@@ -30,7 +30,7 @@ public partial class Login
     }
 
     protected override void OnInitialized()
-    { 
+    {
         Model = new LoginVM();
     }
 }

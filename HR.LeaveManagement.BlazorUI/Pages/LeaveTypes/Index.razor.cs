@@ -21,7 +21,7 @@ public partial class Index
 
 
 	public string Message { get; set; } = string.Empty;
-	public List<LeaveTypeVM> LeaveTypes { get; private set; }
+	public List<LeaveTypeVM> LeaveTypes { get; private set; } = new List<LeaveTypeVM>();
 
 
 	protected void CreateLeaveType()
