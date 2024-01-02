@@ -1,28 +1,27 @@
 ﻿@page "/leaverequests/employeeindex"
+@using HR.LeaveManagement.BlazorUI.Components.Table;
 
-<h1>Leave Request Log</h1>
-<hr/>
+<div class="top-row ps-3 navbar navbar-dark">
+	<span class="navbar-brand mb-0 h1">Leave Request Log</span>
+</div>
 
-@if (!string.IsNullOrEmpty(Message))
-{
-	<div class="alert alert-danger">
-		@Message
-	</div>	
-}
-<table id="tblData" class="table">
-	<thead>
-		<tr>
-			<th>Employee Name</th>
-			<th>Start Date</th>
-			<th>End Date</th>
-			<th>Leave Type</th>
-			<th>Date Requested</th>
-			<th>Approval Status</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model.LeaveRequests)
-		{
+<article class="content px-4">
+	<div class="m-2 d-flex justify-content-end">
+		<a href="/leaverequests/create" class="btn btn-success">Add Leave Request</a>
+	</div>
+
+	<TableComponent Items="Model.LeaveRequests" Context="item">
+		<TableHeader>
+			<tr>
+				<th>Employee Name</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Leave Type</th>
+				<th>Date Requested</th>
+				<th>Approval Status</th>
+			</tr>
+		</TableHeader>
+		<RowTemplate>
 			<tr>
 				<td>@item.Employee.Firstname @item.Employee.Lastname</td>
 				<td>@item.StartDate.ToString("yyyy-MM-dd")</td>
@@ -37,7 +36,6 @@
 					}
 				</td>
 			</tr>
-		}
-	</tbody>
-</table>
-
+		</RowTemplate>
+	</TableComponent>
+</article>

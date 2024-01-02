@@ -12,11 +12,11 @@ public partial class EmployeeIndex
     ILeaveRequestService LeaveRequestService { get; set; }
 
     [Inject]
-    JSRuntime js { get; set; }
+    IJSRuntime js { get; set; }
 
     [Inject]
     NavigationManager NavigationManager { get; set; }
-    public EmployeeLeaveRequestViewVM Model { get; set; } = new();
+    public EmployeeLeaveRequestViewVM Model { get; set; } = new EmployeeLeaveRequestViewVM();
 
     public string Message { get; set; } = string.Empty;
 

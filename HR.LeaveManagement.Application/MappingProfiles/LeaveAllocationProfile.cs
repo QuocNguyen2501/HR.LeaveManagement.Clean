@@ -9,8 +9,8 @@ namespace HR.LeaveManagement.Application.MappingProfiles
     {
         public LeaveAllocationProfile()
         {
-            CreateMap<LeaveAllocation, LeaveAllocationDto>().ForMember(des => des.LeaveType,opt => opt.MapFrom(src=>src.LeaveType.Name));
-            CreateMap<LeaveAllocation, LeaveAllocationDetailsDto>().ForMember(des => des.LeaveType, opt => opt.MapFrom(src => src.LeaveType.Name));
+            CreateMap<LeaveAllocation, LeaveAllocationDto>();
+            CreateMap<LeaveAllocation, LeaveAllocationDetailsDto>();
         }
     }
 }

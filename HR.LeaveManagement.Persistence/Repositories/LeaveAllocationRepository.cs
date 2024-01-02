@@ -32,10 +32,13 @@ namespace HR.LeaveManagement.Persistence.Repositories
             return leaveAllocations;
         }
 
-        public Task<List<LeaveAllocation>> GetLeaveAllocationsWithDetails(string userId)
+        public async Task<List<LeaveAllocation>> GetLeaveAllocationsWithDetails(string userId)
         {
-            throw new NotImplementedException();
-        }
+			var leaveAllocations = await _context.LeaveAllocations.Where(q => q.EmployeeId == userId)
+				.Include(q => q.LeaveType)
+				.ToListAsync();
+			return leaveAllocations;
+		}
 
         public async Task<LeaveAllocation> GetLeaveAllocationWithDetails(string id)
         {

@@ -1,4 +1,5 @@
-﻿using HR.LeaveManagement.Domain;
+﻿using HR.LeaveManagement.Application.Features.LeaveType.Queries.GetAllLeaveTypes;
+using HR.LeaveManagement.Domain;
 
 namespace HR.LeaveManagement.Application.Features.LeaveRequest.Queries.GetLeaveRequestsByUserId;
 
@@ -7,7 +8,7 @@ public class LeaveRequestDto
     public string Id { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
-    public string LeaveType { get; set; }
+    public LeaveTypeDto LeaveType { get; set; }
     public string LeaveTypeId { get; set; }
     public DateTime DateRequested { get; set; }
     public string RequestComments { get; set; }

@@ -11,10 +11,14 @@ namespace HR.LeaveManagement.BlazorUI.MappingProfiles
 	{
 		public Mappingconfig()
 		{
-			CreateMap<LeaveTypeDto, LeaveTypeVM>();
+
+			AllowNullCollections = true;
+
+			CreateMap<LeaveTypeDto, LeaveTypeVM>().ReverseMap();
+			CreateMap<LeaveTypeDetailsDto, LeaveTypeVM>();
 			CreateMap<LeaveTypeVM, CreateLeaveTypeCommand>();
 			CreateMap<LeaveTypeVM, UpdateLeaveTypeCommand>();
-			CreateMap<LeaveTypeDetailsDto, LeaveTypeVM>();
+
 
 			CreateMap<LeaveRequestDto, LeaveRequestVM>()
 				.ForMember(q => q.DateRequested, opt => opt.MapFrom(x => x.DateRequested.DateTime))

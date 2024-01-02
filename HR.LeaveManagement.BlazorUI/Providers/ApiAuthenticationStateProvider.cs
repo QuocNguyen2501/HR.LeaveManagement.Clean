@@ -19,12 +19,12 @@ namespace HR.LeaveManagement.BlazorUI.Providers
 		{
 			var user = new ClaimsPrincipal(new ClaimsIdentity());
 			var isTokenPresent = await _localStorage.ContainKeyAsync("token");
-			if (!isTokenPresent)
+			var savedToken = await _localStorage.GetItemAsync<string>("token");
+			if (!isTokenPresent || string.IsNullOrEmpty(savedToken))
 			{
 				return new AuthenticationState(user);
 			}
-
-			var savedToken = await _localStorage.GetItemAsync<string>("token");
+			
 			var tokenContent = _jwtSecurityTokenHandler.ReadJwtToken(savedToken);
 
 			if (tokenContent.ValidTo < DateTime.UtcNow)
