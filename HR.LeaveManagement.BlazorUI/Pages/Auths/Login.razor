@@ -23,7 +23,6 @@
 				<div id="login-form">
 					<EditForm Model="@Model" OnValidSubmit="HandleLogin">
 						<DataAnnotationsValidator />
-						<ValidationSummary />
 						<div class="form-group">
 							<label class="control-label">Email</label>
 							<InputText id="userName" class="form-control" @bind-Value="@Model.Email"></InputText>
@@ -31,7 +30,6 @@
 						<div class="form-group">
 							<label class="control-label">Password</label>
 							<InputText type="password" id="password" class="form-control" @bind-Value="@Model.Password"></InputText>
-							<ValidationMessage For="@(()=>Model.Password)" />
 						</div>
 						<div class="slot-start">
 							<a href="/users/register">Register an account</a>
