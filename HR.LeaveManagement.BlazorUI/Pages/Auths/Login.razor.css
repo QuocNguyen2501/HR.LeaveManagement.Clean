@@ -1,10 +1,58 @@
-﻿#login-form{
-    width:500px;
+﻿#auth {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 90%;
+    background-color: #E9E9E9;
+    border-radius: 30px;
+}
+
+#auth-form {
+    width: 100%;
+    padding: 20%;
+}
+
+#auth-header {
+    text-align: center;
+    
+}
+
+    #auth-header > #working-img{
+        width:50%;
+    }
+
+#left-side {
+    text-align: center;
+    margin: 8% auto;
+}
+
+#right-side {
+    background-color: #fff;
+    border-radius: 30px;
+    margin-top: 30px;
+    height: 100%;
+}
+
+#working-img {
+    width: 75%;
+}
+
+#login-form{
+    width:340px;
+}
+
+#btn-login {
+    width: 100%;
 }
 
 .slot-end {
     margin: 15px 0px;
-    text-align: right;
 }
 
 .slot-start {
